@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>LastFM Statistics</title>
+    <link href="css/tailwind.css" rel="stylesheet" type="text/css">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+</head>
+
+<body class="mx-2 my-10 bg-base-100 text-neutral flex flex-col justify-center items-center h-screen space-y-6">
+
+    <h1 class="h-1/5 text-center uppercase text-6xl"><span class="text-primary font-[900]">LastFM</span> Stats Retriever </h1>
+
+    <form action="/results" class="my-6 w-96 mx-auto">
+        <div class="form-control w-full gap-4">
+            <label class="label gap-2 w-full">
+                <span class="label-text">LastFM Username</span>
+                <input type="text" placeholder="username123" name="username" id="username" class="input input-bordered input-primary">
+            </label>
+            <input type="submit" value="Submit" class="btn btn-block btn-secondary">
+        </div>
+    </form>
+
+</body>
+
+</html>

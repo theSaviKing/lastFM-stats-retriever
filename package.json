@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "express": "^4.18.1",
+    "node-fetch": "^2.6.7",
+    "pug": "^3.0.2"
+  },
+  "name": "nodefm",
+  "version": "1.0.0",
+  "description": "LastFM Statistics Retriever",
+  "main": "index.js",
+  "devDependencies": {
+    "autoprefixer": "^10.4.7",
+    "daisyui": "^2.15.0",
+    "postcss": "^8.4.14",
+    "tailwindcss": "^3.0.24"
+  },
+  "scripts": {
+    "css": "tailwindcss -i public/css/input.css -o public/css/tailwind.css",
+    "css-w": "npm run css -w"
+  },
+  "keywords": [
+    "lastfm",
+    "music"
+  ],
+  "author": "T. Paul Kariuki",
+  "license": "ISC"
+}

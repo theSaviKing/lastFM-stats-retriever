@@ -1,0 +1,23 @@
+doctype html
+
+head
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width')
+    title LastFM Statistics
+    link(href='css/tailwind.css' rel='stylesheet' type='text/css')
+    link(rel='apple-touch-icon' sizes='180x180' href='favicon/apple-touch-icon.png')
+    link(rel='icon' type='image/png' sizes='32x32' href='favicon/favicon-32x32.png')
+    link(rel='icon' type='image/png' sizes='16x16' href='favicon/favicon-16x16.png')
+    link(rel='manifest' href='favicon/site.webmanifest')
+
+body.mx-2.my-10.bg-base-100.text-neutral.flex.flex-col.justify-center.items-center.h-screen.space-y-6
+    h1.text-center.uppercase.text-6xl(class='h-1/5')
+        span.text-primary(class='font-[900]') LastFM
+        |  Stats Retriever
+    main(class='w-4/5')
+    div.p-6.rounded-xl.bg-base-200
+        div.flex.flex-row.justify-center.items-center
+            img.w-24.h-24
+            div.flex.flex-col.justify-center.items-center
+                p.font-bold.text-xl username
+                p.text-lg user info
