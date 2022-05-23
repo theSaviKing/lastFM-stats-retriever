@@ -1,0 +1,12 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "css",
+			"problemMatcher": [],
+			"label": "npm: css",
+			"detail": "tailwindcss -i public/css/input.css -o public/css/tailwind.css"
+		}
+	]
+}
