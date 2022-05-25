@@ -17,7 +17,7 @@
   },
   "scripts": {
     "css": "tailwindcss -i public/css/input.css -o public/css/tailwind.css",
-    "css-w": "npm run css -w"
+    "css-w": "yarn run css -w"
   },
   "keywords": [
     "lastfm",
