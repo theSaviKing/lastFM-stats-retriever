@@ -38,13 +38,13 @@ app.get('/results', parser, (req, res) => {
         )
         .then(
             json => {
-                console.log(json.toptracks.track)
+                console.log("Tracks retrieved...")
                 return json.toptracks.track
             }
         )
         .then(tops => {
             const tracks = []
-            for(let i = 0; i < 5; i++)
+            for(let i = 0; i < 6; i++)
                 tracks[i] = {
                     artist: tops[i].artist,
                     image: tops[i].image[3]['#text'],
@@ -57,7 +57,7 @@ app.get('/results', parser, (req, res) => {
         })
         .then(
             () => {
-                console.log(user)
+                console.log("User object created!")
                 res.render('results.pug', {
                     username: user['username'],
                     image: user['image'],
