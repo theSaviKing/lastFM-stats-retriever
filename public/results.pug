@@ -10,14 +10,46 @@ head
     link(rel='icon' type='image/png' sizes='16x16' href='favicon/favicon-16x16.png')
     link(rel='manifest' href='favicon/site.webmanifest')
 
-body.mx-2.my-10.bg-base-100.text-neutral.flex.flex-col.justify-center.items-center.h-screen.space-y-6
+body.mx-2.my-10.bg-base-100.text-neutral.flex-col.flex-center.h-screen.space-y-6
+    //- begin header
     h1.text-center.uppercase.text-6xl(class='h-1/5')
         span.text-primary(class='font-[900]') LastFM
         |  Stats Retriever
+    //- begin main content + container div
     main(class='w-4/5')
-    div.p-6.rounded-xl.bg-base-200
-        div.flex.flex-row.justify-center.items-center.space-x-6
-            img.w-24.h-24(src=image)
-            div.flex.flex-col.justify-center.items-center
-                p.font-bold.text-2xl= username
-                p.text-lg user info
+    div.flex-col.flex-center
+        //- begin user info container
+        h2 user info
+        div.rounded-xl.p-6.bg-base-200.flex-row.flex-center.space-x-6
+            img.w-24.h-24.rounded-full.ring-4.ring-primary.ring-offset-4.ring-offset-base-200(src=image)
+            div.flex-col.flex-center.text-left
+                p.font-bold.text-2xl: a(href=url class="hover:underline").text-primary.decoration-secondary.decoration-2.underline-offset-4= username
+                p.text-lg user play count: #[b= plays]
+        //- begin track info container
+        h2 top tracks
+        .grid.grid-cols-5.grid-rows-1.gap-4
+        each track in tracks
+            .bg-base-200.flex-row.flex-center.space-x-4.p-4.rounded-xl
+                img.w-16.h-16.rounded-sm(src=track.image)
+                p: a(href=track.url)= name
+                p: a(href=track.artist.url)= track.artist.name
+                
+    //--------------------
+    //- begin resubmit form
+    h2 retrieve another user's info
+    form.my-6.w-96.mx-auto.p-6.bg-base-200.rounded-3xl(action='/results')
+        .form-control.w-full.gap-4
+            label.label.gap-2.w-full
+                span.label-text LastFM Username
+                input#username.input.input-bordered.input-primary(type='text' placeholder='username123' name='username')
+        .form-control.w-full.gap-4
+            label.label.gap-2.w-full
+                span.label-text Time Period
+                select#period.select.select-primary.font-normal(name='period')
+                    option(value='7day') Last week
+                    option(value='1month') Last month
+                    option(value='3month') Last 3 months
+                    option(value='6month') Last 6 months
+                    option(value='12month') Last year
+                    option(value='overall') All time
+        input.btn.btn-block.btn-secondary(type='submit' value='Resubmit')
