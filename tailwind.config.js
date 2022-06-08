@@ -8,11 +8,13 @@ module.exports = {
         extend: {
             fontFamily: {
                 sans: ['Inter', ...defaultTheme.fontFamily.sans],
-                display: ['Spline Sans', ...defaultTheme.fontFamily.sans]
+                display: ['Spline Sans', ...defaultTheme.fontFamily.sans],
+                mono: ['Source Code Pro', ...defaultTheme.fontFamily.mono]
             }
         },
     },
     plugins: [
+        require('@tailwindcss/line-clamp'),
         require('daisyui')
     ],
     daisyui: {

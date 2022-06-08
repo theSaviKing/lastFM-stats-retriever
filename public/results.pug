@@ -9,33 +9,54 @@ head
     link(rel='icon' type='image/png' sizes='32x32' href='favicon/favicon-32x32.png')
     link(rel='icon' type='image/png' sizes='16x16' href='favicon/favicon-16x16.png')
     link(rel='manifest' href='favicon/site.webmanifest')
-    base(target="_blank")
 
 body.mx-2.my-10.bg-base-100.text-neutral.flex-col.flex-center.min-h-screen.space-y-6
     //- begin header
-    h1.text-center.uppercase.text-6xl(class='h-1/5')
-        span.text-primary(class='font-[900]'): a(href="/") LastFM
+    h1.font-display.font-light.text-center.uppercase.text-6xl(class='h-1/5')
+        span.text-primary.font-bold: a(href="/") LastFM
         |  Stats Retriever
     //- begin main content + container div
     main(class='w-4/5')
         div.flex-col.flex-center.gap-6
-            //- begin user info container
+            //- begin user info
             h2 user info
             div.rounded-xl.p-6.bg-base-200.flex-row.flex-center.space-x-6
                 img.w-24.h-24.rounded-full.ring-4.ring-primary.ring-offset-4.ring-offset-base-200(src=image)
                 div.flex-col.flex-center.text-left
-                    p.font-bold.text-2xl: a(href=url class="hover:underline").text-primary.decoration-secondary.decoration-2.underline-offset-4= username
+                    p.font-bold.text-2xl: a(href=url class="hover:underline" target="_blank").text-primary.decoration-secondary.decoration-2.underline-offset-4= username
                     p.text-lg user play count: #[b= plays]
-            //- begin track info container
+            //- begin top tracks
             h2 top tracks
-            .grid.grid-cols-3.gap-4.w-full 
+            .grid.grid-cols-3.gap-4.w-full.items-start
                 each track in tracks 
-                    .bg-base-200.rounded-xl.p-4.grid.grid-cols-2.items-center 
-                        img.w-16.h-16.rounded(src=track.image)
-                        .flex.flex-col 
-                            p.font-bold: a(href=track.url)= track.name
-                            p: a(href=track.artist.url)= track.artist.name
-                
+                    .bg-base-200.rounded-xl.flex.flex-row.gap-2.items-center
+                        .relative
+                            img.w-28.h-full.rounded-l-xl.object-cover(src=track.image)
+                            p(class="py-0.5").absolute.px-1.text-sm.font-bold.font-mono.rounded-bl.bg-accent.top-0.right-0= track.plays
+                        .flex.flex-col.p-4
+                            p.font-bold.font-display.line-clamp-1.transition-all(class="hover:line-clamp-none"): a(href=track.url target="_blank")= track.name
+                            p.line-clamp-1.transition-all(class="hover:line-clamp-none"): a(href=track.artist.url target="_blank")= track.artist.name
+            //- begin top albums
+            h2 top albums
+            .grid.grid-cols-3.gap-4.w-full.items-start 
+                each album in albums 
+                    .bg-base-200.rounded-xl.flex.flex-row.gap-2.items-center 
+                        .relative 
+                            img.w-28.h-full.rounded-l-xl.object-cover(src=album.image)
+                            p(class="py-0.5").absolute.px-1.text-sm.font-bold.font-mono.rounded-bl.bg-accent.top-0.right-0= album.plays 
+                        .flex.flex-col.p-4 
+                            p.font-bold.font-display.line-clamp-1.transition-all(class="hover:line-clamp-none"): a(href=album.url target="_blank")= album.name 
+                            p.line-clamp-1.transition-all(class="hover:line-clamp-none"): a(href=album.artist.url target="_blank")= album.artist.name
+            //- begin top artists
+            h2 top artists
+            .grid.grid-cols-3.gap-4.w-full.items-start 
+                each artist in artists 
+                    .bg-base-200.rounded-xl.flex.flex-row.gap-2.items-center 
+                        .relative 
+                            img.w-28.h-full.rounded-l-xl.object-cover(src=artist.image)
+                            p(class="py-0.5").absolute.px-1.text-sm.font-bold.font-mono.rounded-bl.bg-accent.top-0.right-0= artist.plays 
+                        .p-4 
+                            p.font-bold.font-display: a(href=artist.url target="_blank")= artist.name
     //--------------------
     //- begin resubmit form
     h2 retrieve another user's info
@@ -43,15 +64,15 @@ body.mx-2.my-10.bg-base-100.text-neutral.flex-col.flex-center.min-h-screen.space
         .form-control.w-full.gap-4
             label.label.gap-2.w-full
                 span.label-text LastFM Username
-                input#username.input.input-bordered.input-primary(type='text' placeholder='username123' name='username')
+                input#username.input.input-bordered.input-primary(type='text' placeholder='username123' name='username' value=username)
         .form-control.w-full.gap-4
             label.label.gap-2.w-full
                 span.label-text Time Period
                 select#period.select.select-primary.font-normal(name='period')
+                    option(value='overall') All time
                     option(value='7day') Last week
                     option(value='1month') Last month
                     option(value='3month') Last 3 months
                     option(value='6month') Last 6 months
                     option(value='12month') Last year
-                    option(value='overall') All time
         input.btn.btn-block.btn-secondary(type='submit' value='Resubmit')
